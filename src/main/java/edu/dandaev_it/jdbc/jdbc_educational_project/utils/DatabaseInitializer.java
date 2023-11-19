@@ -12,17 +12,17 @@ public class DatabaseInitializer {
 	}
 
 	public static String databaseURLInitilizer () {
-		Properties properties = new Properties ();
+		Properties properties = new Properties();
 		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream ("src/main/resources/config.properties");
-			properties.load (fis);
-		
-			DATABASE_URL = properties.getProperty ("db.host");
+			fis = new FileInputStream("src/main/resources/config.properties");
+			properties.load(fis);
+
+			DATABASE_URL = properties.getProperty("db.host");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 		return DATABASE_URL;
 	}

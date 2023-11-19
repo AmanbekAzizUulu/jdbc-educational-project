@@ -8,19 +8,18 @@ import java.util.List;
 import java.util.Properties;
 
 public class Student {
-	private int    id;
+	private transient int id;
 	private String firstName;
 	private String lastName;
 	private String departmentName;
 
 	public Student () {
-		this.id = -1;
 		this.firstName = "first_name";
 		this.lastName = "last_name";
 		this.departmentName = "departament_name";
 	}
 
-	public Student (int id, String firstName, String lastName, String departmentName) {
+	public Student (String firstName, String lastName, String departmentName, int id) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -35,23 +34,23 @@ public class Student {
 	}
 
 	public static List<Student> getStudentList () {
-		Properties properties = new Properties ();
+		Properties properties = new Properties();
 		FileInputStream fis = null;
-		Student studentHolder = new Student ();
-		List<Student> students = new ArrayList<Student> ();
+		Student studentHolder = new Student();
+		List<Student> students = new ArrayList<Student>();
 		try {
-			fis = new FileInputStream ("src/main/resources/config.properties");
-			properties.load (fis);
-			for (int i = 1; i <= 5; ++ i) {
-				studentHolder.setFirstName (properties.getProperty ("student_" + i + ".firstName"));
-				studentHolder.setLastName (properties.getProperty ("student_" + i + ".lastName"));
-				studentHolder.setDepartmentName (properties.getProperty ("student_" + i + ".departmentName"));
-				students.add (new Student (studentHolder));
+			fis = new FileInputStream("src/main/resources/config.properties");
+			properties.load(fis);
+			for (int i = 1; i <= 5; ++i) {
+				studentHolder.setFirstName(properties.getProperty("student_" + i + ".firstName"));
+				studentHolder.setLastName(properties.getProperty("student_" + i + ".lastName"));
+				studentHolder.setDepartmentName(properties.getProperty("student_" + i + ".departmentName"));
+				students.add(new Student(studentHolder));
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 		return students;
 	}
@@ -91,7 +90,7 @@ public class Student {
 	@ Override
 	public String toString () {
 		return "Student {\n\tid: " + id + "\n\tfirst name: " + firstName + "\n\tlast name: " + lastName
-				+ "\n\tdepartament: " + departmentName + "\n}";
+		                + "\n\tdepartament: " + departmentName + "\n}";
 	}
 
 }
